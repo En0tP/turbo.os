@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TURBO OS - Каталог прошивок</title>
+    <style>
+        /* Базовые стили и темная тема */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0e14;
+            color: #e2e8f0;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* Ограничиваем ширину под мобильный интерфейс как на скришоте */
+        }
+
+        /* Шапка сайта */
+        .header-card {
+            background: #161b26;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #232a38;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            border: 2px solid #e2e8f0;
+            padding: 6px 12px;
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: 2px;
+            border-radius: 6px;
+        }
+
+        .author-info {
+            text-align: right;
+        }
+
+        .author-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #94a3b8;
+        }
+
+        .author-links {
+            font-size: 12px;
+            color: #3b82f6;
+            margin-top: 4px;
+        }
+
+        /* Кнопки соцсетей */
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            background: #161b26;
+            border: 1px solid #232a38;
+            color: #e2e8f0;
+            padding: 14px;
+            border-radius: 14px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #1f2736;
+        }
+
+        /* Поиск и фильтры */
+        .search-box {
+            width: 100%;
+            background: #161b26;
+            border: 1px solid #232a38;
+            padding: 14px 16px;
+            border-radius: 14px;
+            color: #e2e8f0;
+            font-size: 14px;
+            margin-bottom: 16px;
+            outline: none;
+        }
+
+        .search-box::placeholder {
+            color: #64748b;
+        }
+
+        .filters {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .filter-badge {
+            background: #161b26;
+            border: 1px solid #232a38;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .filter-badge.active {
+            background: #1e293b;
+            border-color: #3b82f6;
+        }
+
+        /* Сетка устройств */
+        .devices-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .device-card {
+            background: #161b26;
+            border: 1px solid #232a38;
+            border-radius: 20px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Теги на карточке */
+        .card-badges {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .badge-type { background: rgba(59, 130, 246, 0.2); color: #60a5fa; padding: 2px 6px; border-radius: 4px; }
+        .badge-status { background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 2px 6px; border-radius: 4px; }
+
+        .device-img {
+            width: 100%;
+            height: auto;
+            max-height: 140px;
+            object-fit: contain;
+            margin: 12px 0;
+        }
+
+        .device-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .device-version {
+            font-size: 11px;
+            color: #10b981;
+            font-family: monospace;
+        }
+
+        .device-code {
+            font-size: 11px;
+            color: #f59e0b;
+            font-family: monospace;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Шапка -->
+    <div class="header-card">
+        <div class="logo-area">
+            <div class="logo-box">TURBO</div>
+        </div>
+        <div class="author-info">
+            <div class="author-name">Создано EnOt15P</div>
+            <div class="author-links">4PDA • Telegram</div>
+        </div>
+    </div>
+
+    <!-- Кнопки -->
+    <div class="social-grid">
+        <a href="#" class="btn">✈ Канал</a>
+        <a href="#" class="btn">💬 Чат</a>
+        <a href="#" class="btn">✉ Написать автору</a>
+        <a href="#" class="btn" style="color: #f59e0b;">₽ Купить Plus</a>
+    </div>
+
+    <!-- Поиск -->
+    <input type="text" id="searchInput" class="search-box" placeholder="Поиск устройства...">
+
+    <!-- Фильтры -->
+    <div class="filters">
+        <div class="filter-badge active" onclick="filterType('all')">Все</div>
+        <div class="filter-badge" onclick="filterType('official')">Официальные</div>
+        <div class="filter-badge" onclick="filterType('port')">Порты</div>
+    </div>
+
+    <!-- Сетка устройств -->
+    <div class="devices-grid" id="devicesGrid">
+        
+        <!-- Карточка 1 -->
+        <div class="device-card" data-type="official" data-name="POCO F8 Pro">
+            <div class="card-badges">
+                <span class="badge-type">Офиц.</span>
+                <span class="badge-status">Free</span>
+            </div>
+            <!-- Замени URL картинки на свой -->
+            <img class="device-img" src="https://via.placeholder.com/120x140/161b26/fff?text=POCO+F8" alt="POCO F8 Pro">
+            <div class="device-name">POCO F8 Pro</div>
+            <div class="device-version">3.0.305.0</div>
+            <div class="device-code">WPKCNXM</div>
+        </div>
+
+        <!-- Карточка 2 -->
+        <div class="device-card" data-type="port" data-name="Xiaomi 14 Ultra">
+            <div class="card-badges">
+                <span class="badge-type">Порт</span>
+                <span class="badge-status">Plus</span>
+            </div>
+            <img class="device-img" src="https://via.placeholder.com/120x140/161b26/fff?text=Mi+14+U" alt="Xiaomi 14 Ultra">
+            <div class="device-name">Xiaomi 14 Ultra</div>
+            <div class="device-version">3.0.304.0</div>
+            <div class="device-code">WNACNXM</div>
+        </div>
+
+        <!-- Карточка 3 -->
+        <div class="device-card" data-type="official" data-name="Xiaomi 15">
+            <div class="card-badges">
+                <span class="badge-type">Офиц.</span>
+                <span class="badge-status">Free</span>
+            </div>
+            <img class="device-img" src="https://via.placeholder.com/120x140/161b26/fff?text=Xiaomi+15" alt="Xiaomi 15">
+            <div class="device-name">Xiaomi 15</div>
+            <div class="device-version">3.0.303.0</div>
+            <div class="device-code">WOCCNXM</div>
+        </div>
+
+        <!-- Карточка 4 -->
+        <div class="device-card" data-type="port" data-name="POCO F6">
+            <div class="card-badges">
+                <span class="badge-type">Порт</span>
+                <span class="badge-status">Free</span>
+            </div>
+            <img class="device-img" src="https://via.placeholder.com/120x140/161b26/fff?text=POCO+F6" alt="POCO F6">
+            <div class="device-name">POCO F6</div>
+            <div class="device-version">3.0.303.0</div>
+            <div class="device-code">WNPCNXM</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Логика поиска и фильтрации
+    const searchInput = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.device-card');
+    const filterBadges = document.querySelectorAll('.filter-badge');
+    let currentFilter = 'all';
+
+    // Функция поиска
+    searchInput.addEventListener('input', () => {
+        filterValue = searchInput.value.toLowerCase();
+        applyFilters();
+    });
+
+    // Функция выбора фильтра (Все/Офиц/Порты)
+    function filterType(type) {
+        currentFilter = type;
+        filterBadges.forEach(badge => badge.classList.remove('active'));
+        event.target.classList.add('active');
+        applyFilters();
+    }
+
+    // Применение обоих фильтров сразу
+    function applyFilters() {
+        const searchText = searchInput.value.toLowerCase();
+        
+        cards.forEach(card => {
+            const matchesSearch = card.getAttribute('data-name').toLowerCase().includes(searchText);
+            const matchesType = currentFilter === 'all' || card.getAttribute('data-type') === currentFilter;
+
+            if (matchesSearch && matchesType) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
