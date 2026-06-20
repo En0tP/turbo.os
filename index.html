@@ -313,10 +313,82 @@
 
         .m-btn-download { background: rgba(16, 185, 129, 0.15); color: #34d399; }
         .m-btn-changelog { background: #242c3d; color: #94a3b8; }
+        /* Стиль экрана загрузки TURBO */
+#turbo-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0b0e14; /* Глубокий фон в тон сайта */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Поверх всех окон */
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+/* Пульсирующий фирменный логотип */
+.preloader-logo {
+    border: 3px solid #3b82f6; /* Неоново-синяя рамка */
+    color: #e2e8f0;
+    padding: 10px 24px;
+    font-weight: 900;
+    font-size: 32px;
+    letter-spacing: 4px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+    animation: turboPulse 1.8s infinite ease-in-out;
+}
+
+.preloader-text {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #64748b;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Анимация пульсации */
+@keyframes turboPulse {
+    0% {
+        transform: scale(0.96);
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+        transform: scale(1.04);
+        border-color: #fbbf24; /* Мягкое перетекание в цвет Plus-версии на пике */
+        box-shadow: 0 0 30px rgba(251, 191, 36, 0.6);
+    }
+    100% {
+        transform: scale(0.96);
+        border-color: #3b82f6;
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+    }
+}
+
+/* Скрытие прелоадера */
+#turbo-preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+        
     </style>
 </head>
 <body>
-
+    <!-- Экран загрузки TURBO -->
+<div id="turbo-preloader">
+    <div class="preloader-content">
+        <div class="preloader-logo">TURBO</div>
+        <div class="preloader-text">Загрузка системы...</div>
+    </div>
+</div>
+    
 <div class="container">
 
     <!-- Шапка -->
@@ -686,6 +758,16 @@
             card.style.display = (matchesSearch && matchesType) ? 'flex' : 'none';
         });
     }
+    // Скрытие прелоадера после полной загрузки страницы
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('turbo-preloader');
+    
+    // Искусственная задержка в 1.5 секунды, чтобы пользователь успел оценить анимацию
+    setTimeout(() => {
+        preloader.classList.add('fade-out');
+    }, 1500); 
+});
+    
 </script>
 
 </body>
