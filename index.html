@@ -119,8 +119,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            text-decoration: none;
-            color: inherit;
+            cursor: pointer;
             transition: transform 0.2s, background-color 0.2s;
         }
 
@@ -129,7 +128,7 @@
             background: #1f2736;
         }
 
-        /* Интерактивные плашки */
+        /* Теги на карточках */
         .card-badges {
             position: absolute;
             top: 8px;
@@ -137,23 +136,18 @@
             right: 8px;
             display: flex;
             gap: 4px;
-            z-index: 10;
+            z-index: 2;
         }
 
-        .badge {
+        .badge-mini {
             font-size: 10px;
             font-weight: bold;
-            padding: 3px 6px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: opacity 0.2s;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
-
-        .badge:hover { opacity: 0.8; }
-
-        .badge-status { background: #1e293b; color: #94a3b8; border: 1px solid #334155; }
-        .badge-free { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-        .badge-plus { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .bm-status { background: #1e293b; color: #94a3b8; border: 1px solid #334155; }
+        .bm-free { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .bm-plus { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
 
         .device-img {
             width: 100%;
@@ -166,6 +160,159 @@
         .device-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
         .device-version { font-size: 11px; color: #34d399; font-family: monospace; }
         .device-code { font-size: 11px; color: #fbbf24; font-family: monospace; margin-top: 2px; }
+
+        /* ==================== СТИЛИ МОДАЛЬНОГО ОКНА (POPUP) ==================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 7, 10, 0.85);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 16px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-window {
+            background: #151a26;
+            border: 1px solid #242c3d;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Шапка окна */
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .modal-avatar-box {
+            background: #1f2736;
+            border-radius: 16px;
+            padding: 8px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-avatar-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-title-area h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .modal-type-badge {
+            background: #1e293b;
+            color: #3b82f6;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* Блоки версий */
+        .version-block {
+            background: #1b2232;
+            border: 1px solid #273147;
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .block-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .title-free { color: #34d399; }
+        .title-plus { color: #fbbf24; }
+
+        .modal-ver-num {
+            font-size: 18px;
+            font-weight: 600;
+            font-family: monospace;
+            margin-bottom: 2px;
+        }
+
+        .modal-date {
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        .modal-price {
+            font-size: 13px;
+            color: #f59e0b;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        /* Кнопки действий */
+        .modal-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .m-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .m-btn-download { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .m-btn-changelog { background: #242c3d; color: #94a3b8; }
     </style>
 </head>
 <body>
@@ -183,7 +330,7 @@
         </div>
     </div>
 
-    <!-- Рабочие ссылки на ресурсы -->
+    <!-- Кнопки ресурсов -->
     <div class="social-grid">
         <a href="https://t.me/TURBOromMiui" target="_blank" class="btn">✈ Канал</a>
         <a href="http://t.me/TURBOCommunication" target="_blank" class="btn">💬 Чат</a>
@@ -206,378 +353,337 @@
         
         <!-- ==================== ОФИЦИАЛЬНЫЕ ВЕРСИИ ==================== -->
         
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="Xiaomi 17 Pro">
+        <!-- В ТЕГАХ data- ПРОПИСАНЫ ВСЕ ДАННЫЕ ДЛЯ ОКНА (ССЫЛКИ, ДАТЫ, ИЗМЕНЕНИЯ) -->
+        <div class="device-card" data-type="official" data-name="Xiaomi 17 Pro" 
+             data-ver="3.0.313.0.WBLCNXM" data-date="18.06.2026"
+             data-link-free="https://cloud.mail.ru/link_free" data-link-free-change="https://t.me/changelog_free"
+             data-link-plus-change="https://t.me/changelog_plus" data-price="Цена: 500₽ (250₽ при наличии PLUS от 02.06.26)">
             <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
+                <span class="badge-mini bm-status">Офиц.</span>
+                <span class="badge-mini bm-free">• Free</span>
+                <span class="badge-mini bm-plus">• Plus</span>
             </div>
             <img class="device-img" src="Xiaomi17Pro.png" alt="Xiaomi 17 Pro">
             <div class="device-name">Xiaomi 17 Pro</div>
             <div class="device-version">3.0.313.0</div>
             <div class="device-code">WBLCNXM</div>
-        </a>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="Xiaomi 15">
+        <div class="device-card" data-type="official" data-name="Xiaomi 15" 
+             data-ver="3.0.303.0.WOCCNXM" data-date="17.06.2026"
+             data-link-free="https://cloud.mail.ru/link_free" data-link-free-change="https://t.me/changelog_free"
+             data-link-plus-change="https://t.me/changelog_plus" data-price="Цена: 500₽ (250₽ при наличии PLUS от 02.06.26)">
             <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
+                <span class="badge-mini bm-status">Офиц.</span>
+                <span class="badge-mini bm-free">• Free</span>
+                <span class="badge-mini bm-plus">• Plus</span>
             </div>
             <img class="device-img" src="xiaomi_15.png" alt="Xiaomi 15">
             <div class="device-name">Xiaomi 15</div>
             <div class="device-version">3.0.303.0</div>
             <div class="device-code">WOCCNXM</div>
-        </a>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="Poco F8 Pro">
+        <div class="device-card" data-type="official" data-name="Poco F8 Pro" 
+             data-ver="3.0.305.0.WPKCNXM" data-date="18.06.2026"
+             data-link-free="https://cloud.mail.ru/link_free" data-link-free-change="https://t.me/changelog_free"
+             data-link-plus-change="https://t.me/changelog_plus" data-price="Цена: 500₽ (250₽ при наличии PLUS от 02.06.26)">
             <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
+                <span class="badge-mini bm-status">Офиц.</span>
+                <span class="badge-mini bm-free">• Free</span>
+                <span class="badge-mini bm-plus">• Plus</span>
             </div>
             <img class="device-img" src="poco_f8_pro.webp" alt="Poco F8 Pro">
             <div class="device-name">Poco F8 Pro</div>
             <div class="device-version">3.0.305.0</div>
             <div class="device-code">WPKCNXM</div>
-        </a>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="Poco F6">
+        <div class="device-card" data-type="official" data-name="Poco F6" 
+             data-ver="3.0.303.0.WNPCNXM" data-date="15.06.2026"
+             data-link-free="https://cloud.mail.ru/link_free" data-link-free-change="https://t.me/changelog_free"
+             data-link-plus-change="https://t.me/changelog_plus" data-price="Цена: 500₽ (250₽ при наличии PLUS)">
             <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
+                <span class="badge-mini bm-status">Офиц.</span>
+                <span class="badge-mini bm-free">• Free</span>
+                <span class="badge-mini bm-plus">• Plus</span>
             </div>
             <img class="device-img" src="poco_f6.png" alt="Poco F6">
             <div class="device-name">Poco F6</div>
             <div class="device-version">3.0.303.0</div>
             <div class="device-code">WNPCNXM</div>
-        </a>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="Poco M8 Pro 5G">
-            <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <!-- По такому же принципу прописаны остальные карточки... -->
+        <div class="device-card" data-type="official" data-name="Poco M8 Pro 5G" data-ver="3.0.313.0.WPRCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_m8_pro_5g.png" alt="Poco M8 Pro 5G">
-            <div class="device-name">Poco M8 Pro 5G</div>
-            <div class="device-version">3.0.313.0</div>
-            <div class="device-code">WPRCNXM</div>
-        </a>
+            <div class="device-name">Poco M8 Pro 5G</div><div class="device-version">3.0.313.0</div><div class="device-code">WPRCNXM</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="POCO F8 ULTRA">
-            <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="official" data-name="POCO F8 ULTRA" data-ver="3.0.303.0.WPMCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_f8_ultra.png" alt="POCO F8 ULTRA">
-            <div class="device-name">POCO F8 ULTRA</div>
-            <div class="device-version">3.0.303.0</div>
-            <div class="device-code">WPMCNXM</div>
-        </a>
+            <div class="device-name">POCO F8 ULTRA</div><div class="device-version">3.0.303.0</div><div class="device-code">WPMCNXM</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="POCO F7 PRO">
-            <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="official" data-name="POCO F7 PRO" data-ver="3.0.303.0.WOKCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_f7_pro.png" alt="POCO F7 PRO">
-            <div class="device-name">POCO F7 PRO</div>
-            <div class="device-version">3.0.303.0</div>
-            <div class="device-code">WOKCNXM</div>
-        </a>
+            <div class="device-name">POCO F7 PRO</div><div class="device-version">3.0.303.0</div><div class="device-code">WOKCNXM</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="POCO F7">
-            <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="official" data-name="POCO F7" data-ver="3.0.303.0.WOLCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_f7.png" alt="POCO F7">
-            <div class="device-name">POCO F7</div>
-            <div class="device-version">3.0.303.0</div>
-            <div class="device-code">WOLCNXM</div>
-        </a>
+            <div class="device-name">POCO F7</div><div class="device-version">3.0.303.0</div><div class="device-code">WOLCNXM</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="POCO F6 Pro">
-            <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="official" data-name="POCO F6 Pro" data-ver="3.0.303.0.WNKCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_f6_pro.png" alt="POCO F6 Pro">
-            <div class="device-name">POCO F6 Pro</div>
-            <div class="device-version">3.0.303.0</div>
-            <div class="device-code">WNKCNXM</div>
-        </a>
+            <div class="device-name">POCO F6 Pro</div><div class="device-version">3.0.303.0</div><div class="device-code">WNKCNXM</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="Xiaomi 14 Ultra">
-            <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="official" data-name="Xiaomi 14 Ultra" data-ver="3.0.304.0.WNACNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="xiaomi_14_ultra.png" alt="Xiaomi 14 Ultra">
-            <div class="device-name">Xiaomi 14 Ultra</div>
-            <div class="device-version">3.0.304.0</div>
-            <div class="device-code">WNACNXM</div>
-        </a>
+            <div class="device-name">Xiaomi 14 Ultra</div><div class="device-version">3.0.304.0</div><div class="device-code">WNACNXM</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="RN14ProPlus5G">
-            <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="official" data-name="RN14ProPlus5G" data-ver="3.0.303.0.WOPCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="rn14_pro_plus_5g.png" alt="RN14ProPlus5G">
-            <div class="device-name">RN14ProPlus5G</div>
-            <div class="device-version">3.0.303.0</div>
-            <div class="device-code">WOPCNXM</div>
-        </a>
+            <div class="device-name">RN14ProPlus5G</div><div class="device-version">3.0.303.0</div><div class="device-code">WOPCNXM</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="official" data-name="Xiaomi 14">
-            <div class="card-badges">
-                <span class="badge badge-status">Офиц.</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="official" data-name="Xiaomi 14" data-ver="3.0.302.0.WNCCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="xiaomi_14.png" alt="Xiaomi 14">
-            <div class="device-name">Xiaomi 14</div>
-            <div class="device-version">3.0.302.0</div>
-            <div class="device-code">WNCCNXM</div>
-        </a>
+            <div class="device-name">Xiaomi 14</div><div class="device-version">3.0.302.0</div><div class="device-code">WNCCNXM</div>
+        </div>
 
 
         <!-- ==================== ПОРТИРОВАННЫЕ ВЕРСИИ ==================== -->
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="POCO X3 PRO">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="POCO X3 PRO" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_x3_pro.png" alt="POCO X3 PRO">
-            <div class="device-name">POCO X3 PRO</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">POCO X3 PRO</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="Redmi Note 10 Pro">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="Redmi Note 10 Pro" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="redmi_note_10_pro.png" alt="Redmi Note 10 Pro">
-            <div class="device-name">Redmi Note 10 Pro</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">Redmi Note 10 Pro</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="POCO F7 Ultra">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="POCO F7 Ultra" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_f7_ultra.png" alt="POCO F7 Ultra">
-            <div class="device-name">POCO F7 Ultra</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">POCO F7 Ultra</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="Xiaomi 13 Pro">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="Xiaomi 13 Pro" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="xiaomi_13_pro.png" alt="Xiaomi 13 Pro">
-            <div class="device-name">Xiaomi 13 Pro</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">Xiaomi 13 Pro</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="Xiaomi 12 Pro">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="Xiaomi 12 Pro" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="xiaomi_12_pro.png" alt="Xiaomi 12 Pro">
-            <div class="device-name">Xiaomi 12 Pro</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">Xiaomi 12 Pro</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="Xiaomi 12">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="Xiaomi 12" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="xiaomi_12.png" alt="Xiaomi 12">
-            <div class="device-name">Xiaomi 12</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">Xiaomi 12</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="Xiaomi 12S Ultra">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="Xiaomi 12S Ultra" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="xiaomi_12s_ultra.png" alt="Xiaomi 12S Ultra">
-            <div class="device-name">Xiaomi 12S Ultra</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">Xiaomi 12S Ultra</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="Xiaomi 12 Lite">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="Xiaomi 12 Lite" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="xiaomi_12_lite.png" alt="Xiaomi 12 Lite">
-            <div class="device-name">Xiaomi 12 Lite</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">Xiaomi 12 Lite</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="POCO F5 Pro">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="POCO F5 Pro" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_f5_pro.png" alt="POCO F5 Pro">
-            <div class="device-name">POCO F5 Pro</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">POCO F5 Pro</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="POCO F5">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="POCO F5" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_f5.png" alt="POCO F5">
-            <div class="device-name">POCO F5</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">POCO F5</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="POCO X5 PRO 5G">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="POCO X5 PRO 5G" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_x5_pro_5g.png" alt="POCO X5 PRO 5G">
-            <div class="device-name">POCO X5 PRO 5G</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">POCO X5 PRO 5G</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="POCO F4">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="POCO F4" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="poco_f4.png" alt="POCO F4">
-            <div class="device-name">POCO F4</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">POCO F4</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="Redmi Note 12 4G / NFC">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="Redmi Note 12 4G / NFC" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="redmi_note_12_4g.png" alt="Redmi Note 12 4G / NFC">
-            <div class="device-name">Redmi Note 12 4G / NFC</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">Redmi Note 12 4G / NFC</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="Redmi Note 11 Pro 5G">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="Redmi Note 11 Pro 5G" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="redmi_note_11_pro_5g.png" alt="Redmi Note 11 Pro 5G">
-            <div class="device-name">Redmi Note 11 Pro 5G</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">Redmi Note 11 Pro 5G</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
-        <a href="#" target="_blank" class="device-card" data-type="port" data-name="Xiaomi Mi 10">
-            <div class="card-badges">
-                <span class="badge badge-status">Порт</span>
-                <object><a href="#" target="_blank" class="badge badge-free">• Free</a></object>
-                <object><a href="#" target="_blank" class="badge badge-plus">• Plus</a></object>
-            </div>
+        <div class="device-card" data-type="port" data-name="Xiaomi Mi 10" data-ver="3.0.300.0.PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
+            <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span></div>
             <img class="device-img" src="xiaomi_mi_10.png" alt="Xiaomi Mi 10">
-            <div class="device-name">Xiaomi Mi 10</div>
-            <div class="device-version">3.0.300.0</div>
-            <div class="device-code">PORTED</div>
-        </a>
+            <div class="device-name">Xiaomi Mi 10</div><div class="device-version">3.0.300.0</div><div class="device-code">PORTED</div>
+        </div>
 
     </div>
 </div>
+
+<!-- ==================== СТРУКТУРА ВСПЛЫВАЮЩЕГО ОКНА ==================== -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-window">
+        <button class="modal-close" id="modalClose">&times;</button>
+        
+        <div class="modal-header">
+            <div class="modal-avatar-box">
+                <img id="modalImg" src="" alt="">
+            </div>
+            <div class="modal-title-area">
+                <h2 id="modalName">Имя Смартфона</h2>
+                <span class="modal-type-badge" id="modalType">Официальная</span>
+            </div>
+        </div>
+
+        <!-- Free версия -->
+        <div class="version-block">
+            <div class="block-title title-free">● Free версия</div>
+            <div class="modal-ver-num" id="modalFreeVer">3.0.0.0</div>
+            <div class="modal-date" id="modalFreeDate">00.00.0000</div>
+            <div class="modal-buttons">
+                <a href="#" id="modalBtnDownload" target="_blank" class="m-btn m-btn-download">↓ Скачать</a>
+                <a href="#" id="modalBtnFreeChanges" target="_blank" class="m-btn m-btn-changelog">↗ Список изменений</a>
+            </div>
+        </div>
+
+        <!-- Plus версия -->
+        <div class="version-block">
+            <div class="block-title title-plus">● Plus версия</div>
+            <div class="modal-ver-num" id="modalPlusVer">3.0.0.0</div>
+            <div class="modal-date" id="modalPlusDate">00.00.0000</div>
+            <div class="modal-price" id="modalPlusPrice">Цена...</div>
+            <div class="modal-buttons">
+                <a href="#" id="modalBtnPlusChanges" target="_blank" class="m-btn m-btn-changelog" style="flex: unset; width: 100%;">↗ Список изменений</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     const searchInput = document.getElementById('searchInput');
     const cards = document.querySelectorAll('.device-card');
     const filterBadges = document.querySelectorAll('.filter-badge');
     let currentFilter = 'all';
 
-    // Слушаем ввод в поисковую строку
-    searchInput.addEventListener('input', () => { 
-        applyFilters(); 
+    // Элементы модального окна
+    const overlay = document.getElementById('modalOverlay');
+    const closeBtn = document.getElementById('modalClose');
+    const mImg = document.getElementById('modalImg');
+    const mName = document.getElementById('modalName');
+    const mType = document.getElementById('modalType');
+    const mFreeVer = document.getElementById('modalFreeVer');
+    const mFreeDate = document.getElementById('modalFreeDate');
+    const mPlusVer = document.getElementById('modalPlusVer');
+    const mPlusDate = document.getElementById('modalPlusDate');
+    const mPlusPrice = document.getElementById('modalPlusPrice');
+    const mBtnDownload = document.getElementById('modalBtnDownload');
+    const mBtnFreeChanges = document.getElementById('modalBtnFreeChanges');
+    const mBtnPlusChanges = document.getElementById('modalBtnPlusChanges');
+
+    // Логика открытия окна при клике на карточку
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const name = card.getAttribute('data-name');
+            const type = card.getAttribute('data-type') === 'official' ? 'Официальная' : 'Портированная';
+            const ver = card.getAttribute('data-ver');
+            const date = card.getAttribute('data-date');
+            const img = card.querySelector('.device-img').src;
+            
+            const linkFree = card.getAttribute('data-link-free');
+            const linkFreeChange = card.getAttribute('data-link-free-change');
+            const linkPlusChange = card.getAttribute('data-link-plus-change');
+            const price = card.getAttribute('data-price');
+
+            // Заполняем данными окно
+            mName.innerText = name;
+            mType.innerText = type;
+            mImg.src = img;
+            
+            mFreeVer.innerText = ver;
+            mFreeDate.innerText = date;
+            mPlusVer.innerText = ver + " от " + date.substring(0, 5); // Форматируем "от 16.06"
+            mPlusDate.innerText = date;
+            mPlusPrice.innerText = price;
+
+            mBtnDownload.href = linkFree;
+            mBtnFreeChanges.href = linkFreeChange;
+            mBtnPlusChanges.href = linkPlusChange;
+
+            // Показываем окно
+            overlay.classList.add('active');
+        });
     });
 
-    // Функция выбора фильтра (Все/Офиц/Порты)
+    // Закрытие окна
+    closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
+    overlay.addEventListener('click', (e) => {
+        if(e.target === overlay) overlay.classList.remove('remove'); // клик вне окна
+    });
+
+    // Закрытие по клику на темную область вокруг окна
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.classList.remove('active');
+    });
+
+    // Поиск
+    searchInput.addEventListener('input', () => { applyFilters(); });
+
+    // Фильтры
     function filterType(type) {
         currentFilter = type;
-        
-        // Сбрасываем активный класс со всех кнопок
         filterBadges.forEach(badge => badge.classList.remove('active'));
-        
-        // Находим кнопку, на которую нажали, и делаем её активной
         const clickedBadge = Array.from(filterBadges).find(badge => 
             badge.innerText.toLowerCase().includes(type === 'official' ? 'офиц' : type === 'port' ? 'порт' : 'все')
         );
         if (clickedBadge) clickedBadge.classList.add('active');
-
         applyFilters();
     }
 
-    // Главная функция фильтрации и поиска
     function applyFilters() {
         const searchText = searchInput.value.toLowerCase().trim();
-        
         cards.forEach(card => {
-            const cardName = card.getAttribute('data-name').toLowerCase();
-            const cardType = card.getAttribute('data-type');
-
-            const matchesSearch = cardName.includes(searchText);
-            const matchesType = currentFilter === 'all' || cardType === currentFilter;
-
-            if (matchesSearch && matchesType) {
-                card.style.display = 'flex';
-            } else {
-                card.style.display = 'none';
-            }
+            const matchesSearch = card.getAttribute('data-name').toLowerCase().includes(searchText);
+            const matchesType = currentFilter === 'all' || card.getAttribute('data-type') === currentFilter;
+            card.style.display = (matchesSearch && matchesType) ? 'flex' : 'none';
         });
     }
 </script>
