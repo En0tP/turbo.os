@@ -1,8 +1,9 @@
 {
-  "fingerprint": "OnePlus/OnePlus9Pro_EEA/OnePlus9Pro:13/RP1A.201005.001/2011192305:user/release-keys",
-  "manufacturer": "OnePlus",
-  "brand": "OnePlus",
-  "model": "IN2024",
-  "device": "OnePlus9Pro",
-  "product": "OnePlus9Pro_EEA"
+  "fingerprint": "Xiaomi/davinci/davinci:10/QKQ1.190825.002/V12.0.3.0.QFJMIXM:user/release-keys",
+  "manufacturer": "Xiaomi",
+  "brand": "Xiaomi",
+  "model": "Mi 9T",
+  "device": "davinci",
+  "product": "davinci"
+  "security_patch": "2020-10-01"
 }
