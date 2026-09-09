@@ -115,14 +115,12 @@
             background: #161b26;
             border: 1px solid #232a38;
             border-radius: 20px;
-            padding: 16px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             position: relative;
             cursor: pointer;
             transition: transform 0.2s, background-color 0.2s;
-            min-height: 110px;
         }
 
         .device-card:hover {
@@ -132,9 +130,13 @@
 
         /* Теги на карточках */
         .card-badges {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
             display: flex;
             gap: 4px;
-            margin-bottom: 12px;
+            z-index: 2;
         }
 
         .badge-mini {
@@ -147,15 +149,19 @@
         .bm-free { background: rgba(16, 185, 129, 0.15); color: #34d399; }
         .bm-plus { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
 
-        .device-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
+        /* Идеальное отображение картинок без белых рамок */
+        .device-img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin: 16px 0 8px 0;
+            mix-blend-mode: luminosity;
+            opacity: 0.95;
         }
 
-        .device-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+        .device-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
         .device-version { font-size: 11px; color: #34d399; font-family: monospace; }
-        .device-code { font-size: 11px; color: #fbbf24; font-family: monospace; }
+        .device-code { font-size: 11px; color: #fbbf24; font-family: monospace; margin-top: 2px; }
 
         /* ==================== СТИЛИ МОДАЛЬНОГО ОКНА (POPUP) ==================== */
         .modal-overlay {
@@ -223,11 +229,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #3b82f6;
-            font-weight: 900;
-            font-size: 18px;
-            letter-spacing: 1px;
-            border: 1px solid #2e384d;
+        }
+
+        .modal-avatar-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            mix-blend-mode: luminosity;
         }
 
         .modal-title-area h2 {
@@ -409,92 +417,110 @@
         
         <div class="device-card" data-type="official" data-name="Xiaomi 17 Pro Max" data-ver="3.0.317.0" data-code="WPBCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 17 Pro Max</div><div class="device-version">3.0.317.0</div><div class="device-code">WPBCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-17-pro-max.jpg" alt="Xiaomi 17 Pro Max">
+            <div class="device-name">Xiaomi 17 Pro Max</div><div class="device-version">3.0.317.0</div><div class="device-code">WPBCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Xiaomi 17 ULTRA" data-ver="3.0.308.0" data-code="WPACNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 17 ULTRA</div><div class="device-version">3.0.308.0</div><div class="device-code">WPACNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-17-ultra.jpg" alt="Xiaomi 17 ULTRA">
+            <div class="device-name">Xiaomi 17 ULTRA</div><div class="device-version">3.0.308.0</div><div class="device-code">WPACNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Xiaomi 17" data-ver="3.0.315.0" data-code="WPCCNXM" data-date="03.07.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 17</div><div class="device-version">3.0.315.0</div><div class="device-code">WPCCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-17.jpg" alt="Xiaomi 17">
+            <div class="device-name">Xiaomi 17</div><div class="device-version">3.0.315.0</div><div class="device-code">WPCCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Xiaomi 17 Pro" data-ver="3.0.313.0" data-code="WBLCNXM" data-date="18.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 17 Pro</div><div class="device-version">3.0.313.0</div><div class="device-code">WBLCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-17-pro.jpg" alt="Xiaomi 17 Pro">
+            <div class="device-name">Xiaomi 17 Pro</div><div class="device-version">3.0.313.0</div><div class="device-code">WBLCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Xiaomi 15 Pro" data-ver="3.0.308.0" data-code="WOBCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 15 Pro</div><div class="device-version">3.0.308.0</div><div class="device-code">WOBCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-15-pro.jpg" alt="Xiaomi 15 Pro">
+            <div class="device-name">Xiaomi 15 Pro</div><div class="device-version">3.0.308.0</div><div class="device-code">WOBCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Xiaomi 15" data-ver="3.0.305.0" data-code="WOCCNXM" data-date="17.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 15</div><div class="device-version">3.0.305.0</div><div class="device-code">WOCCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-15.jpg" alt="Xiaomi 15">
+            <div class="device-name">Xiaomi 15</div><div class="device-version">3.0.305.0</div><div class="device-code">WOCCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Xiaomi 13 ULTRA" data-ver="3.0.306.0" data-code="WMACNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 13 ULTRA</div><div class="device-version">3.0.306.0</div><div class="device-code">WMACNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-13-ultra-.jpg" alt="Xiaomi 13 ULTRA">
+            <div class="device-name">Xiaomi 13 ULTRA</div><div class="device-version">3.0.306.0</div><div class="device-code">WMACNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Xiaomi 14 Ultra" data-ver="3.0.304.0" data-code="WNACNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 14 Ultra</div><div class="device-version">3.0.304.0</div><div class="device-code">WNACNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-14-ultra.jpg" alt="Xiaomi 14 Ultra">
+            <div class="device-name">Xiaomi 14 Ultra</div><div class="device-version">3.0.304.0</div><div class="device-code">WNACNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Xiaomi 14" data-ver="3.0.302.0" data-code="WNCCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 14</div><div class="device-version">3.0.302.0</div><div class="device-code">WNCCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-14.jpg" alt="Xiaomi 14">
+            <div class="device-name">Xiaomi 14</div><div class="device-version">3.0.302.0</div><div class="device-code">WNCCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Poco F8 Ultra" data-ver="3.0.308.0" data-code="WPMCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Poco F8 Ultra</div><div class="device-version">3.0.308.0</div><div class="device-code">WPMCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f6-pro.jpg" alt="Poco F8 Ultra">
+            <div class="device-name">Poco F8 Ultra</div><div class="device-version">3.0.308.0</div><div class="device-code">WPMCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Poco F8 Pro" data-ver="3.0.307.0" data-code="WPKCNXM" data-date="18.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Poco F8 Pro</div><div class="device-version">3.0.307.0</div><div class="device-code">WPKCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f6-pro.jpg" alt="Poco F8 Pro">
+            <div class="device-name">Poco F8 Pro</div><div class="device-version">3.0.307.0</div><div class="device-code">WPKCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Poco F7 Pro" data-ver="3.0.307.0" data-code="WOKCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Poco F7 Pro</div><div class="device-version">3.0.307.0</div><div class="device-code">WOKCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f7-pro.jpg" alt="Poco F7 Pro">
+            <div class="device-name">Poco F7 Pro</div><div class="device-version">3.0.307.0</div><div class="device-code">WOKCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Poco F7" data-ver="3.0.305.0" data-code="WOLCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Poco F7</div><div class="device-version">3.0.305.0</div><div class="device-code">WOLCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f7.jpg" alt="Poco F7">
+            <div class="device-name">Poco F7</div><div class="device-version">3.0.305.0</div><div class="device-code">WOLCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Poco F6 Pro" data-ver="3.0.306.0" data-code="WNKCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Poco F6 Pro</div><div class="device-version">3.0.306.0</div><div class="device-code">WNKCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f6-pro.jpg" alt="Poco F6 Pro">
+            <div class="device-name">Poco F6 Pro</div><div class="device-version">3.0.306.0</div><div class="device-code">WNKCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Poco F6" data-ver="3.0.303.0" data-code="WNPCNXM" data-date="15.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Poco F6</div><div class="device-version">3.0.303.0</div><div class="device-code">WNPCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f6.jpg" alt="Poco F6">
+            <div class="device-name">Poco F6</div><div class="device-version">3.0.303.0</div><div class="device-code">WNPCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Poco M8 Pro 5G" data-ver="3.0.316.0" data-code="WPRCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Poco M8 Pro 5G</div><div class="device-version">3.0.316.0</div><div class="device-code">WPRCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-m6-pro.jpg" alt="Poco M8 Pro 5G">
+            <div class="device-name">Poco M8 Pro 5G</div><div class="device-version">3.0.316.0</div><div class="device-code">WPRCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="Poco M8 5G" data-ver="3.0.302.0" data-code="WPQCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Poco M8 5G</div><div class="device-version">3.0.302.0</div><div class="device-code">WPQCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-m6.jpg" alt="Poco M8 5G">
+            <div class="device-name">Poco M8 5G</div><div class="device-version">3.0.302.0</div><div class="device-code">WPQCNXM</div>
         </div>
 
         <div class="device-card" data-type="official" data-name="RN14ProPlus5G" data-ver="3.0.303.0" data-code="WOPCNXM" data-date="14.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽">
             <div class="card-badges"><span class="badge-mini bm-status">Офиц.</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">RN14ProPlus5G</div><div class="device-version">3.0.303.0</div><div class="device-code">WOPCNXM</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-14-pro-plus.jpg" alt="RN14ProPlus5G">
+            <div class="device-name">RN14ProPlus5G</div><div class="device-version">3.0.303.0</div><div class="device-code">WOPCNXM</div>
         </div>
 
 
@@ -502,77 +528,92 @@
 
         <div class="device-card" data-type="port" data-name="Redmi Note 13 4G / NFC" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Redmi Note 13 4G</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-13-4g.jpg" alt="Redmi Note 13 4G / NFC">
+            <div class="device-name">Redmi Note 13 4G</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="POCO F4" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">POCO F4</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f4.jpg" alt="POCO F4">
+            <div class="device-name">POCO F4</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="POCO X3 PRO" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">POCO X3 PRO</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x3-pro.jpg" alt="POCO X3 PRO">
+            <div class="device-name">POCO X3 PRO</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="Redmi Note 10 Pro" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Redmi Note 10 Pro</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-10-pro.jpg" alt="Redmi Note 10 Pro">
+            <div class="device-name">Redmi Note 10 Pro</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="POCO F7 Ultra" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">POCO F7 Ultra</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f7-ultra.jpg" alt="POCO F7 Ultra">
+            <div class="device-name">POCO F7 Ultra</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="Xiaomi 13 Pro" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 13 Pro</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-13-pro.jpg" alt="Xiaomi 13 Pro">
+            <div class="device-name">Xiaomi 13 Pro</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="Xiaomi 12 Pro" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 12 Pro</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-12-pro.jpg" alt="Xiaomi 12 Pro">
+            <div class="device-name">Xiaomi 12 Pro</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="Xiaomi 12" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 12</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-12.jpg" alt="Xiaomi 12">
+            <div class="device-name">Xiaomi 12</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="Xiaomi 12S Ultra" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 12S Ultra</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-12s-ultra.jpg" alt="Xiaomi 12S Ultra">
+            <div class="device-name">Xiaomi 12S Ultra</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="Xiaomi 12 Lite" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Xiaomi 12 Lite</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-12-lite.jpg" alt="Xiaomi 12 Lite">
+            <div class="device-name">Xiaomi 12 Lite</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="POCO F5 Pro" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">POCO F5 Pro</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f5-pro.jpg" alt="POCO F5 Pro">
+            <div class="device-name">POCO F5 Pro</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="POCO F5" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">POCO F5</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f5.jpg" alt="POCO F5">
+            <div class="device-name">POCO F5</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="POCO X5 PRO 5G" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">POCO X5 PRO 5G</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x5-pro.jpg" alt="POCO X5 PRO 5G">
+            <div class="device-name">POCO X5 PRO 5G</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="Redmi Note 12 4G / NFC" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Redmi Note 12 4G</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-12-4g.jpg" alt="Redmi Note 12 4G / NFC">
+            <div class="device-name">Redmi Note 12 4G</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
         <div class="device-card" data-type="port" data-name="Redmi Note 11 Pro 5G" data-ver="3.0.306.0" data-code="PORTED" data-date="10.06.2026" data-link-free="#" data-link-free-change="#" data-link-plus-change="#" data-price="Цена: 500₽ (250₽ при наличии релиза от 09.08.26)">
             <div class="card-badges"><span class="badge-mini bm-status">Порт</span><span class="badge-mini bm-free">• Free</span><span class="badge-mini bm-plus">• Plus</span></div>
-            <div class="device-info"><div class="device-name">Redmi Note 11 Pro 5G</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div></div>
+            <img class="device-img" src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-11-pro-5g.jpg" alt="Redmi Note 11 Pro 5G">
+            <div class="device-name">Redmi Note 11 Pro 5G</div><div class="device-version">3.0.306.0</div><div class="device-code">PORTED</div>
         </div>
 
     </div>
@@ -584,7 +625,9 @@
         <button class="modal-close" id="modalClose">&times;</button>
         
         <div class="modal-header">
-            <div class="modal-avatar-box">TURBO</div>
+            <div class="modal-avatar-box">
+                <img id="modalImg" src="" alt="">
+            </div>
             <div class="modal-title-area">
                 <h2 id="modalName">Имя Смартфона</h2>
                 <span class="modal-type-badge" id="modalType">Официальная</span>
@@ -624,6 +667,7 @@
     // Элементы модального окна
     const overlay = document.getElementById('modalOverlay');
     const closeBtn = document.getElementById('modalClose');
+    const mImg = document.getElementById('modalImg');
     const mName = document.getElementById('modalName');
     const mType = document.getElementById('modalType');
     const mFreeVer = document.getElementById('modalFreeVer');
@@ -642,6 +686,7 @@
             const type = card.getAttribute('data-type') === 'official' ? 'Официальная' : 'Портированная';
             const ver = card.getAttribute('data-ver');
             const date = card.getAttribute('data-date');
+            const img = card.querySelector('.device-img').src;
             
             const linkFree = card.getAttribute('data-link-free');
             const linkFreeChange = card.getAttribute('data-link-free-change');
@@ -651,6 +696,7 @@
             // Заполняем данными окно
             mName.innerText = name;
             mType.innerText = type;
+            mImg.src = img;
             
             mFreeVer.innerText = ver;
             mFreeDate.innerText = date;
@@ -706,4 +752,4 @@
 </script>
 
 </body>
-                                                                                                                                      </html>                                                                                                                                      
+            </html>
