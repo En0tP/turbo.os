@@ -1,0 +1,14 @@
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { createClient } from '@/lib/supabase/server';
+import { isAdmin } from '@/lib/auth';
+export default async function AccountPage(){
+ const supabase=await createClient(); const {data:{user}}=await supabase.auth.getUser(); if(!user) redirect('/login?next=/account');
+ const [{data:requests},{data:tickets},{data:role}] = await Promise.all([
+  supabase.from('plus_access_requests').select('id,device,reason,status,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(10),
+  supabase.from('support_tickets').select('id,subject,status,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(10),
+  supabase.from('user_roles').select('role').eq('user_id',user.id).eq('role','admin').maybeSingle()
+ ]);
+ async function signOut(){'use server';const s=await createClient();await s.auth.signOut();redirect('/');}
+ return <main className="portal-wrap"><div className="portal-top"><Link href="/" className="portal-brand">TURBO OS<small>FIRMWARE PROJECT</small></Link><div className="portal-actions"><Link className="portal-button" href="/">На главную</Link><form action={signOut}><button className="portal-button">Выйти</button></form></div></div><section className="portal-shell"><div className="portal-kicker">ЛИЧНЫЙ КАБИНЕТ</div><h1 className="portal-title">Привет!</h1><p className="portal-lead">{user.email}</p><div className="portal-grid"><div className="portal-row"><div className="portal-kicker">СТАТУС PLUS</div><h2>{(requests||[]).some(r=>r.status==='approved')?'Доступ активен':'Доступ не выдан'}</h2><p>PLUS открывается после ручного одобрения заявки администратором.</p><Link className="portal-button primary" href="/plus">Открыть PLUS</Link></div><div className="portal-row"><div className="portal-kicker">ПОДДЕРЖКА</div><h2>Нужна помощь?</h2><p>Создай обращение и следи за ответом в личном кабинете.</p><Link className="portal-button" href="/support">Написать в поддержку</Link></div></div>{role&&<p style={{marginTop:18}}><Link className="portal-button primary" href="/admin">Открыть панель управления</Link></p>}<h2 style={{marginTop:30}}>Заявки PLUS</h2><div className="portal-list">{(requests||[]).length?(requests||[]).map(r=><article className="portal-row" key={r.id}><b>{r.device}</b><p>{r.reason}</p><span className="portal-status">{r.status==='approved'?'Одобрено':r.status==='rejected'?'Отклонено':'Ожидает рассмотрения'}</span></article>):<div className="portal-row"><p>Заявок пока нет.</p></div>}</div><h2 style={{marginTop:30}}>Обращения в поддержку</h2><div className="portal-list">{(tickets||[]).length?(tickets||[]).map(t=><article className="portal-row" key={t.id}><b>{t.subject}</b><p>Статус: {t.status==='closed'?'Закрыто':'Открыто'}</p><p>{new Date(t.created_at).toLocaleString('ru-RU')}</p></article>):<div className="portal-row"><p>Обращений пока нет.</p></div>}</div></section></main>
+}
